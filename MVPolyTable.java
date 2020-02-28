@@ -8,7 +8,6 @@ import java.util.StringTokenizer;
 public class MVPolyTable  {
 	
 	
-	//Is this my PolyTable?
 	//Doubly Linked list that holds all MVPolynomials
 	DLList<MVPolynomial> polynomials = new DLList<MVPolynomial>();
 	
