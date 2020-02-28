@@ -6,6 +6,10 @@ import java.util.StringTokenizer;
 //polynomial math operations.
 
 public class MVPolyTable  {
+	
+	
+	//Is this my PolyTable?
+	//Doubly Linked list that holds all MVPolynomials
 	DLList<MVPolynomial> polynomials = new DLList<MVPolynomial>();
 	
 	public MVPolyTable() {
@@ -18,17 +22,21 @@ public class MVPolyTable  {
 //		the same name. In the case of an insertion failure, display the message POLYNOMIAL <name>
 //		ALREADY INSERTED.
 		
-		String polyName = input.substring(0, input.indexOf(" ")); 
+		String polyName = input.substring(0, input.indexOf(" "));
+		//STR
 		StringTokenizer str = new StringTokenizer(input);
 		MVPolynomial temp = new MVPolynomial(input);
 		
+		//Getting all components of MVPolyTerms from tokenized input string
 		while(str.hasMoreTokens()) {
 			StringTokenizer str2 = new StringTokenizer(str.nextToken());
 			String coeff = str2.nextToken();
 			String xExp = str2.nextToken();
 			String yExp = str2.nextToken();
 			String zExp = str2.nextToken();
+			//Hold components and join them to form MVPolyTerms
 			MVPolyTerm tempTerm = new MVPolyTerm(coeff, xExp, yExp, zExp);
+			//Insert MVPolyTerm at end of temp, a temporary MVPolynomial to hold temporarily
 			temp.insertLast(tempTerm);
 		}
 			
@@ -36,6 +44,7 @@ public class MVPolyTable  {
 			System.out.println("POLYNOMIAL "+ polyName + "ALREADY INSERTED");
 		}
 		else {
+			///temp is then called and inserted at the end of 
 			polynomials.insertLast(temp);
 		}
     }
@@ -110,10 +119,61 @@ public class MVPolyTable  {
 	public void quit() {
 		polynomials.clear();
 	}
+    // If power of 1st polynomial is greater then 2nd, then store 1st as it is 
+    // and move its pointer
 	
-	public void add() {
+	
+    // If power of 2nd polynomial is greater then 1st, then store 2nd as it is 
+    // and move its pointer 
+	
+	// If power of both polynomial numbers is same then add their coefficients
+	
+	//The incoming strings are the names associated with the respective Polynomial
+	//Result will also be the name associated with a Linked List to hold the union of
+	//the two linked lists.
+	public void add(String poly1, String poly2, String result) {
 		
+		//with the use of the Polynomial name, we can search for the specific
+		//polynomials involved in that operation.
+		
+		//We use the search function to look through all the MVPolyTable elements.
+		
+		//How do you identify a MVPolynomial by it's name? (Which is a MVPolyTerm of the MVPolynomial.)
+		//Answer: We iterate through MVPolynomial.
+		//How do we this?
+		//We can iterate through it calling
+		//search on 
+
+		
+		
+		//poly1 is the name associated with an MVPolynomial
+		//how do we bring the MVPolynomail? (to then be added/joined with the other polynomial)
+		
+		//We use the names because you can getName() to find a specific polynomial with search
+		
+		//
+		
+		if(search(poly1) == true && search(poly2) == true) {
+			while(polynomials.next() == true) {
+				if(polynomials.dataRead().getName().equals(poly1)) {
+					
+					System.out.println("POLYNOMIAL "+ poly1 + " EXISTS");
+				}
+				else if(polynomials.dataRead().getName().equals(poly2)){
+					MVPolynomial s1 = polynomials.dataRead();
+				}
+				
+		}
+				
+				
+			
+			
+			//Combine them store in result variable
+			//poly1 is the name 
+		}
+		//string that represents that polynomial
 	}
+	
 	public void subtraction() {
 		
 	}
@@ -122,5 +182,20 @@ public class MVPolyTable  {
 	}
 	public void simplify() {
 		
+	}
+	static String toString(MVPolyTerm poly) {
+		String result = null;
+		int cof = poly.getCoef();
+		int x = poly.getxexp();
+		int y = poly.getyexp();
+		int z = poly.getzexp();
+		if(cof > 1) {
+		result = "" + cof + "x^" + x + "z^"+ y + "z^" +z;
+		}else if(cof == 1) {
+			result = cof + "x^" + x + "z^"+ y + "z^" +z;
+		}else {
+			result = null;
+		}
+	return result;
 	}
 }
